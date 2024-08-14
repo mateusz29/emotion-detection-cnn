@@ -18,9 +18,12 @@ def save_train_image_from_pixels(pixels, path):
     img_flip = img.transpose(Image.FLIP_LEFT_RIGHT)
     img_flip.save(f'{path[:-4]}_flip.png')
 
-    # Save the rotated image
-    img_rot = img.rotate(20)
-    img_rot.save(f'{path[:-4]}_rot.png')
+    # Save the rotated images
+    img_rot = img.rotate(15, resample=Image.BICUBIC)
+    img_rot.save(f'{path[:-4]}_15rot.png')
+
+    img_rot = img.rotate(-15, resample=Image.BICUBIC)
+    img_rot.save(f'{path[:-4]}_-15rot.png')
 
 def main() -> None:
     # Load the dataset
