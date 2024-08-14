@@ -1,3 +1,6 @@
+# FER 2013 dataset
+data/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
