@@ -9,19 +9,16 @@ def save_image_from_pixels(pixels: str, path: str) -> None:
     img= Image.fromarray(img).convert('L')
     img.save(path)
 
-def save_train_image_from_pixels(pixels, path):
+def save_train_image_from_pixels(pixels: str, path: str) -> None:
     # Save the original image
     save_image_from_pixels(pixels, path)
 
-    # Save the flipped image
+    # Flip and rotate the image
     img = Image.open(path)
     img_flip = img.transpose(Image.FLIP_LEFT_RIGHT)
     img_flip.save(f'{path[:-4]}_flip.png')
-
-    # Save the rotated images
     img_rot = img.rotate(15, resample=Image.BICUBIC)
     img_rot.save(f'{path[:-4]}_15rot.png')
-
     img_rot = img.rotate(-15, resample=Image.BICUBIC)
     img_rot.save(f'{path[:-4]}_-15rot.png')
 
