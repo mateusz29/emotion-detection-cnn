@@ -9,7 +9,7 @@ def save_image_from_pixels(pixels: str, path: str) -> None:
     img= Image.fromarray(img).convert('L')
     img.save(path)
 
-def save_train_image_from_pixels(pixels: str, path: str) -> None:
+def save_augmented_images_from_pixels(pixels: str, path: str) -> None:
     # Save the original image
     save_image_from_pixels(pixels, path)
 

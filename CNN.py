@@ -1,8 +1,9 @@
 import torch.nn as nn
-import torch.functional as F
+import torch.nn.functional as F
+from torch import Tensor
 
 class CNN(nn.Module):
-    def __init__(self):
+    def __init__(self) -> None:
         super(CNN, self).__init__()
         self.conv1 = nn.Conv2d(in_channels=1, out_channels=32, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1)
@@ -12,7 +13,7 @@ class CNN(nn.Module):
         self.fc2 = nn.Linear(512, 7)  # 7 output classes
         self.dropout = nn.Dropout(0.25)
 
-    def forward(self, x):
+    def forward(self, x: Tensor) -> Tensor:
         x = self.pool(F.relu(self.conv1(x)))
         x = self.pool(F.relu(self.conv2(x)))
         x = self.pool(F.relu(self.conv3(x)))

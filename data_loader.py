@@ -8,8 +8,8 @@ def load_data(batch_size: int) -> Tuple[DataLoader, DataLoader]:
     transform = transforms.Compose([
         transforms.Grayscale(num_output_channels=1),
         transforms.Resize((48, 48)),
-        transforms.Normalize((0.5,), (0.5,)),
-        transforms.ToTensor()
+        transforms.ToTensor(),
+        transforms.Normalize((0.5,), (0.5,))
     ])
 
     # Load the training and testing datasets
