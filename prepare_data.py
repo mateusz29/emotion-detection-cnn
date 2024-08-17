@@ -51,7 +51,7 @@ def main() -> None:
             save_image_from_pixels(pixels, image_path)
         else:
             image_path = os.path.join(train_dir, emotion, f'train_{i}.png')
-            save_train_image_from_pixels(pixels, image_path)
+            save_augmented_images_from_pixels(pixels, image_path)
 
 if __name__ == '__main__':
     main()
