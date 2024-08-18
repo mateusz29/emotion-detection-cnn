@@ -11,8 +11,8 @@ def main() -> None:
 
     # Defining the hyper parameters
     learning_rate = 0.001
-    weight_decay = 0.01
-    num_epochs = 25
+    weight_decay = 0.001
+    num_epochs = 40
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
 
