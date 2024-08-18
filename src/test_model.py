@@ -8,7 +8,7 @@ def main() -> None:
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = CNN().to(device)
-    model.load_state_dict(torch.load('model/emotion_cnn.pth', weights_only=True))
+    model.load_state_dict(torch.load('./model/emotion_cnn.pth', weights_only=True))
     model.eval()
 
     correct = 0

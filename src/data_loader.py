@@ -13,8 +13,8 @@ def load_data(batch_size: int) -> Tuple[DataLoader, DataLoader]:
     ])
 
     # Load the training and testing datasets
-    train_dataset = ImageFolder('data/train_images', transform=transform)
-    test_dataset = ImageFolder('data/test_images', transform=transform)
+    train_dataset = ImageFolder('./data/train_images', transform=transform)
+    test_dataset = ImageFolder('./data/test_images', transform=transform)
 
     # Create the data loaders
     train_loader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True)

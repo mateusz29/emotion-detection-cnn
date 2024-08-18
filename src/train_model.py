@@ -35,7 +35,7 @@ def main() -> None:
 
         print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {running_loss/len(train_loader):.4f}")
 
-    torch.save(model.state_dict(), 'model/emotion_cnn.pth')
+    torch.save(model.state_dict(), './model/emotion_cnn.pth')
 
 if __name__ == '__main__':
     main()

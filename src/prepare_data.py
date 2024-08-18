@@ -24,11 +24,11 @@ def save_augmented_images_from_pixels(pixels: str, path: str) -> None:
 
 def main() -> None:
     # Load the dataset
-    df = pd.read_csv('data/fer2013.csv')
+    df = pd.read_csv('./data/fer2013.csv')
 
     # Create the directories to save the images
-    train_dir = 'data/train_images'
-    test_dir = 'data/test_images'
+    train_dir = './data/train_images'
+    test_dir = './data/test_images'
     os.makedirs(train_dir, exist_ok=True)
     os.makedirs(test_dir, exist_ok=True)
 
