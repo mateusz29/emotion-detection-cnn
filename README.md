@@ -85,3 +85,11 @@ The CNN model consists of:
 ## Results
 
 - **Model Accuracy**: Achieved 63.74% accuracy on the test set.
+
+## TODO
+
+- **Data Augmentation**: Explore and implement additional image augmentation techniques (e.g. scaling and color jittering).
+
+- **Hyperparameter Tuning**: Experiment with different learning rates, batch sizes, and optimizers.
+
+- **Model Architecture**: Modify the CNN architecture by adding more layers, experimenting with different filter sizes and numbers, adjusting dropout rates and batch normalization parameters, and exploring alternative activation functions (e.g., Leaky ReLU, ELU).
