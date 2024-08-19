@@ -1,12 +1,14 @@
-from data_loader import load_data
 import torch
+
 from CNN import CNN
+from data_loader import load_data
+
 
 def main() -> None:
     # Load the training data
     train_loader, _ = load_data(batch_size=64)
 
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = CNN().to(device)
 
     # Defining the hyper parameters
@@ -14,7 +16,9 @@ def main() -> None:
     weight_decay = 0.001
     num_epochs = 40
     criterion = torch.nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+    optimizer = torch.optim.Adam(
+        model.parameters(), lr=learning_rate, weight_decay=weight_decay
+    )
 
     for epoch in range(num_epochs):
         running_loss = 0.0
@@ -33,9 +37,12 @@ def main() -> None:
             optimizer.step()
             running_loss += loss.item()
 
-        print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {running_loss/len(train_loader):.4f}")
+        print(
+            f"Epoch [{epoch+1}/{num_epochs}], Loss: {running_loss/len(train_loader):.4f}"
+        )
 
-    torch.save(model.state_dict(), './model/emotion_cnn.pth')
+    torch.save(model.state_dict(), "./model/emotion_cnn.pth")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

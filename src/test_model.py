@@ -1,14 +1,16 @@
-from data_loader import load_data
 import torch
+
 from CNN import CNN
+from data_loader import load_data
+
 
 def main() -> None:
     # Load the testing data
     _, test_loader = load_data(batch_size=64)
 
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = CNN().to(device)
-    model.load_state_dict(torch.load('./model/emotion_cnn.pth', weights_only=True))
+    model.load_state_dict(torch.load("./model/emotion_cnn.pth", weights_only=True))
     model.eval()
 
     correct = 0
@@ -22,9 +24,10 @@ def main() -> None:
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
-    
+
     accuracy = 100 * correct / total
     print(f"Test accuracy: {accuracy:.2f}%")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
