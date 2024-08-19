@@ -5,9 +5,10 @@ from torch import Tensor
 from torch.utils.data import DataLoader
 from torchvision.datasets import ImageFolder
 from torchvision import transforms
+from typing import Self
 
 class CNN(nn.Module):
-    def __init__(self) -> None:
+    def __init__(self: Self) -> None:
         super(CNN, self).__init__()
         self.conv1 = nn.Conv2d(in_channels=1, out_channels=32, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1)
@@ -22,7 +23,7 @@ class CNN(nn.Module):
         self.fc2 = nn.Linear(512, 7) # 7 output classes
         self.dropout = nn.Dropout(0.5)
 
-    def forward(self, x: Tensor) -> Tensor:
+    def forward(self: Self, x: Tensor) -> Tensor:
         x = self.pool(F.relu(self.batchnorm1(self.conv1(x))))
         x = self.pool(F.relu(self.batchnorm2(self.conv2(x))))
         x = self.pool(F.relu(self.batchnorm3(self.conv3(x))))

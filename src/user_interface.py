@@ -6,9 +6,10 @@ import cv2
 from CNN import CNN
 import numpy as np
 from torchvision import transforms
+from typing import Self
 
 class EmotionRecognitionApp(ctk.CTk):
-    def __init__(self, model: CNN, device: str) -> None:
+    def __init__(self: Self, model: CNN, device: str) -> None:
         super().__init__()
         ctk.set_appearance_mode("dark")
         ctk.set_default_color_theme("blue")
@@ -17,19 +18,19 @@ class EmotionRecognitionApp(ctk.CTk):
         self._create_layout()
         self._create_buttons()
     
-    def _setup_window(self) -> None:
+    def _setup_window(self: Self) -> None:
         self.title("Emotion Recognition App")
         self.geometry("1400x700")
         self.resizable(False, False)
 
-    def _init_variables(self, model, device) -> None:
+    def _init_variables(self: Self, model: CNN, device: torch.device) -> None:
         self.model = model
         self.device = device
         self.image = None
         self.detected_faces = []
         self.image_size = (960, 540)
     
-    def _create_layout(self) -> None:
+    def _create_layout(self: Self) -> None:
         # Main display area 
         self.main_blob = ctk.CTkFrame(self, corner_radius=10)
         self.main_blob.pack(side="left", fill="both", expand=True, padx=10, pady=10)
@@ -42,7 +43,7 @@ class EmotionRecognitionApp(ctk.CTk):
         self.image_label = ctk.CTkLabel(self.main_blob, text="", width=self.image_size[0], height=self.image_size[1])
         self.image_label.pack(fill="both", expand=True)
 
-    def _create_buttons(self) -> None:
+    def _create_buttons(self: Self) -> None:
         button_width = 150
         self.button_frame = ctk.CTkFrame(self.button_blob, fg_color="transparent")
         self.button_frame.pack(expand=True, padx=10, pady=10)
@@ -61,7 +62,7 @@ class EmotionRecognitionApp(ctk.CTk):
         self.predict_btn.pack(pady=15)
         self.predict_btn.configure(state="disabled")
 
-    def load_image(self) -> None:
+    def load_image(self: Self) -> None:
         file_path = filedialog.askopenfilename()
         if file_path:
             self.image = Image.open(file_path)
@@ -73,12 +74,12 @@ class EmotionRecognitionApp(ctk.CTk):
             self.detect_btn.configure(state="normal")
             self.predict_btn.configure(state="disabled")
 
-    def display_image(self, img) -> None:
+    def display_image(self: Self, img: Image) -> None:
         ctk_img = ctk.CTkImage(img, size=self.image_size)  # Ensure image is displayed at the fixed size
         self.image_label.configure(image=ctk_img)
         self.image_label.image = ctk_img
 
-    def detect_face(self) -> None:
+    def detect_face(self: Self) -> None:
         if self.image:
             # Convert PIL image to OpenCV format
             img_cv = np.array(self.image.convert('RGB'))
@@ -103,7 +104,7 @@ class EmotionRecognitionApp(ctk.CTk):
                 # No faces detected, disable prediction
                 self.predict_btn.configure(state="disabled")
 
-    def predict_emotion(self) -> None:
+    def predict_emotion(self: Self) -> None:
         if len(self.detected_faces) > 0:
             # Convert PIL image to OpenCV format
             img_cv = np.array(self.image.convert('RGB'))
@@ -127,7 +128,7 @@ class EmotionRecognitionApp(ctk.CTk):
             self.image = Image.fromarray(cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB))
             self.display_image(self.image)
 
-    def get_emotion(self, face_img) -> str:
+    def get_emotion(self: Self, face_img: Image) -> str:
         transform = transforms.Compose([
             transforms.Grayscale(num_output_channels=1),
             transforms.Resize((48, 48)),
